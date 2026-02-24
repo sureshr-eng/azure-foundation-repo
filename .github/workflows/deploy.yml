@@ -25,10 +25,16 @@ jobs:
         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
+    - name: Create Resource Group
+      run: |
+        az group create \
+          --name rg-logicapp-standard \
+          --location eastus
+
     - name: Deploy Infrastructure
       run: |
         az deployment group create \
-          --resource-group rg-demo-cin \
+          --resource-group rg-logicapp-standard \
           --template-file infra/main.bicep \
           --parameters \
               logicAppName=logicappstd-${{ github.run_number }} \
