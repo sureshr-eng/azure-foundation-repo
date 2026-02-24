@@ -1,4 +1,4 @@
-param location string = 'eastus'
+param location string = 'uks'
 param logicAppName string
 param storageAccountName string
 
