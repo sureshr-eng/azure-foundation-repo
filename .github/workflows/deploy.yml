@@ -25,7 +25,7 @@ jobs:
         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-    - name: Deploy Infrastructure
+    - name: Deploy Infrastructures
       run: |
         az deployment group create \
           --resource-group rg-logicapp-standard \
