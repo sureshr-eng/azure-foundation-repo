@@ -1,0 +1,37 @@
+# Please run the below scripts  to assign  the Service Bus sender and Service Bus receiver IAM roles to  the Azure Service after setting the below variables specific to the use case.
+
+$subscriptionName = '' for Production environment
+$serviceBusName = ""; # Set service bus namespace
+$sbresourceGroup = ""; # Set resource group the service bus belongs to
+$azureserviceResourceGroup= ""; # Set resource group the azure service belongs to
+$azureservicename = ""; # Set azure service name that requires SB permissions 
+$serviceBusSubName = ""; # Set service bus subscription name
+$serviceBusTopicName = ""; # Set service bus topic name
+$logicAppObjectId=""
+
+#Fetch Azure Subscription Id and Azure Service Managed Identity Object Id
+#-------------------------------------------------------------------------
+$subscriptionId = $(Get-AzSubscription  -SubscriptionName $subscriptionName)
+#$logicAppObjectId = az ad sp list --display-name $azureservicename --query '[].id' -o tsv
+
+
+#Service Bus Sender Role to SB topic
+#------------------------------------
+
+az role assignment create --assignee-object-id "$logicAppObjectId" --assignee-principal-type "ServicePrincipal" --role "Azure Service Bus Data Sender" --scope "/subscriptions/$subscriptionId/resourceGroups/$sbresourceGroup/providers/Microsoft.ServiceBus/namespaces/$serviceBusName/topics/$serviceBusTopicName"
+
+#Service Bus Sender Role to SB subscription
+#-------------------------------------------
+
+az role assignment create --assignee-object-id "$logicAppObjectId" --assignee-principal-type "ServicePrincipal" --role "Azure Service Bus Data Sender" --scope "/subscriptions/$subscriptionId/resourceGroups/$sbresourceGroup/providers/Microsoft.ServiceBus/namespaces/$serviceBusName/topics/$serviceBusTopicName/subscriptions/$serviceBusSubName"
+
+#Service Bus Receiver Role to SB topic
+#--------------------------------------
+
+az role assignment create --assignee-object-id "$logicAppObjectId" --assignee-principal-type "ServicePrincipal" --role "Azure Service Bus Data Receiver" --scope "/subscriptions/$subscriptionId/resourceGroups/$sbresourceGroup/providers/Microsoft.ServiceBus/namespaces/$serviceBusName/topics/$serviceBusTopicName"
+
+
+#Service Bus Receiver Role to SB subscription
+#---------------------------------------------
+
+az role assignment create --assignee-object-id "$logicAppObjectId" --assignee-principal-type "ServicePrincipal" --role "Azure Service Bus Data Receiver" --scope "/subscriptions/$subscriptionId/resourceGroups/$sbresourceGroup/providers/Microsoft.ServiceBus/namespaces/$serviceBusName/topics/$serviceBusTopicName/subscriptions/$serviceBusSubName"
