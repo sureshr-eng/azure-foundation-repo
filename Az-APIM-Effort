@@ -1,0 +1,20 @@
+Complexity Type	Definition	Average Effort  (PD)
+Simple
+1.REST based API virtualization with pass-through
+2.Basic Authentication
+3.Request- Response Routing Pattern
+Effort:3
+Medium
+1. API Proxy with standard Transformation from JSON to XML
+2. Security : Basic Authentication, OAuth 2.0 Encryption/Decryption
+3. API Orchestration : Content based Routing and Request Response Routing
+4. Traffic Management : Standard Rate Limiting and Quota Management Configuration
+5. Format Validation - Proper JSON"	
+Effort: 5
+Complex
+1. API Policies with complex transformation requirement such as multiple business rules validation
+2. Security : OAuth 2.0 (using 3rd Party Token management system), SAML, Cryptography, HMAC, LDAP Integration
+3. API Orchestration : Aggregation Patterns
+4. Traffic Management : Customized Rate Limiting and Quota Management
+5. Message Validation as per Schema"	
+Effort: 7
