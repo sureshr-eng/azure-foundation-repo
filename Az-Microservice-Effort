@@ -1,0 +1,44 @@
+Complexity Type	Definition	Average Effort  (PD)
+Simple	
+"1.	Simple request and response schema (8-10 fields)
+2. Simple business validations(1) with only one data entity lookup.
+3. Simple transformation with direct object to object mapping with same format
+4. Simple Get and Delete operations
+5. Integration with one or two tables of the Database
+6. Includes simple business logic/computation or NA
+7. Auditing & Event Publishing (1 or 2 fields) or NA"	
+Effort: 6
+
+Medium	
+"1. Request and response schema (20-25 fields), schemas can have nested objects.
+2. Complex business validations (2-3) with multiple data entities lookup.
+3. Data transformation with direct/indirect mapping, Calling external services/libraries
+4. Action routing & Attribute routing
+5. All HTTP operations
+5. Integration with two or three tables of the Database
+6. Includes simple business logic/computation 
+7. Auditing & Event Publishing (5 or more fields)"	
+Effort: 10
+
+Complex	
+"1. Request and response schema (20-30 fields), schemas can have nested objects.
+2. Complex business validations (4-5) with multiple data entities lookup.
+3. Data transformation with direct/indirect mapping, Calling external services/libraries
+4. Orchestrating multiple api calls and fetching the data from multiple sources and returning aggregated response or interacting with 3 to 5 tables in DB and aggregating response
+5. Asynchronus pattern, Entity Framework, Unit Of Work
+6. Basic authentication, Forms, SSL, Oauth 2.0
+7. All HTTP operations
+8. Has complex business logic/computation"
+Effort: 14
+
+High Complex	
+"1.	Request and response schema (50+ fields), schemas can have nested objects.
+2. Complex business validations (7+) with multiple data entities lookup.
+3. Data transformation with direct/indirect mapping, Calling multiple external services/libraries
+4. Orchestrating multiple api calls and fetching the data from multiple sources and returning aggregated response. or interacting with more than 5 tables in DB and aggregating response.
+5. Basic authentication, Forms, SSL, Oauth 2.0 & External authentication
+6. Advanced patterns such as Entity Framework, Unity Of Work, Generic Repository, DI & IOC, Unity Container & Odata
+7. Data encryption & decryption logic
+8. All HTTP operations
+9. Has very complex business logic/computation"	
+Effort: 18
