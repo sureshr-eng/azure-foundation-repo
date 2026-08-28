@@ -1,0 +1,39 @@
+ Complexity Type	Definition	Average Effort (PD)
+Small	
+"1. Number of Fields: 5-10
+2. Involves a one-way message flow that originates from a source system and is routed through Azure to a backend system
+3. Leverages an out-of-the-box connector for connectivity to systems
+4. Message schemas are generated or provided by the system being integrated 
+5· Transformation or mapping is simple or one-to-one between the inbound message and the message being routed to the database"	
+Efforts:7
+
+Medium	
+"1. Number of Fields: 10-25
+2. Involves a one-way message flow that originates from a source system and is routed through Azure to a backend system
+3. A basic process is developed to choreograph a 1-5 step process
+4. Leverages an out-of-the-box adapter for connectivity to systems but requires some custom configuration for transport and messaging
+5. Message schemas are generated or provided by the system being integrated but multiple customizations and addition of fields is required
+6. Transformation or mapping is moderately complex and requires deconstructing the inbound message prior to routing
+Efforts:11
+
+Large	
+"1. Number of Fields: 25-50
+2. Involves a one-way message flow that originates from a source system and is routed through Azure to 1-2 backend systems
+3. A moderately complex process is developed to choreograph a 5 – 10 step process
+4. Delivery and process acknowledgments are required from each system
+5. Leverages an out-of-the-box connector for connectivity to systems but requires extensive custom configuration for transport and messaging
+6. Message schemas are developed from scratch
+7. Transformation or mapping is complex and requires deconstructing the inbound message and reconstructing the outbound message being routed to each system"
+Efforts:15
+
+Extra Large	
+"1. Number of Fields: 50+
+2. Integration with 2-3 different backend services is required
+3. A complex process is developed to manage and choreograph a 10-15 step process
+4. Delivery and process acknowledgments are required from each system
+5. Requires leveraging non-standard adapters or protocol methods to integrate with one or more systems
+6. Message schemas are developed from scratch
+7. Asynchronous responses or routing to multiple systems is required
+8. Transformation or mapping is very complex and requires deconstructing the inbound message and reconstructing the outbound message being routed to each system. 
+Individual fields need to be transformed based on system specific fields such as priority and status values."
+Efforts:18
