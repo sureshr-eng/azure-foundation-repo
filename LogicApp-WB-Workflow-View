@@ -1,0 +1,38 @@
+    // Capture the workbook parameter as a dynamic array
+let StatusFilter = dynamic([{Status}]);
+
+    LogicAppWorkflowRuntime
+    | order by TimeGenerated desc
+    | where TrackedProperties != ""  
+    | project
+        InterfaceName   = parse_json(TrackedProperties).interfaceName,
+        ComponentName   = parse_json(TrackedProperties).componentName,
+        TrackingId      = parse_json(TrackedProperties).trackingId,
+        TransactionId   = parse_json(TrackedProperties).transactionId,
+         Status          = parse_json(TrackedProperties).status,        
+        ExecutionId     = parse_json(TrackedProperties).executionId,
+        ExecutionStage  = parse_json(TrackedProperties).executionStage,
+        Source          = parse_json(TrackedProperties).source,
+        Target          = parse_json(TrackedProperties).target,
+        Organization  = parse_json(TrackedProperties).organization,
+       TransactionType = parse_json(TrackedProperties).transactionType,
+        StartTime       = parse_json(TrackedProperties).startTime,
+        EndTime         = parse_json(TrackedProperties).endTime,
+        BusinessField1  = parse_json(TrackedProperties).businessField1,
+        BusinessField2  = parse_json(TrackedProperties).businessField2,
+        BusinessField3  = parse_json(TrackedProperties).businessField3,
+        MessageLocation  = parse_json(TrackedProperties).messageLocation,
+        ErrorMessage  = parse_json(TrackedProperties).errorMessage,
+        TimeGenerated    
+        | where TrackingId !=""    
+        | where isempty('{InterfaceName}') or InterfaceName == '{InterfaceName}'
+        | where isempty('{ComponentName}') or ComponentName == '{ComponentName}'
+        | where isempty('{TransactionId}') or TransactionId == '{TransactionId}'
+        | where array_length(StatusFilter)==0 or Status in (StatusFilter)
+        | where isempty('{Source}') or Source == '{Source}'
+        | where isempty('{Target}') or Target == '{Target}'
+        | where isempty('{TrackingId}')  or TrackingId=='{TrackingId}'
+        | where isempty('{BusinessField1}') or BusinessField1 contains '{BusinessField1}'
+        | where isempty('{BusinessField2}') or BusinessField2 contains '{BusinessField2}'
+        | where isempty('{BusinessField3}') or BusinessField3 contains '{BusinessField3}'
+    and TimeGenerated {TimeRange};
